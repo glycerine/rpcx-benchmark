@@ -19,10 +19,14 @@ allowing one-way calls as well as two-way calls; and supporting
 server initiated messages and a simple []byte based API too.
 See https://github.com/glycerine/rpc25519 for full details.
 
+Even fully encrypted (see the last two benchmarks which use
+QUIC and TLSv1.3 respectively), the rpc25519 system is still 
+lighter and faster than any other.
+
 On a 48 core linux box:
 ====================
 
-rpc25519
+rpc25519 (TCP; no encryption like the other rpc systems below)
 --------
 ~~~
 ~/go/src/github.com/rpcxio/rpcx-benchmark/rpc25519/client (rpc25519) $ ./client -n 10000000 -c 1000 -pool 1000
@@ -43,7 +47,6 @@ mean: 2 ms, median: 1 ms,
 
 max: 72 ms, min: 0 ms, p99.9: 26 ms
 ~~~
-
 
 go_stdrpc
 ---------
@@ -134,4 +137,49 @@ mean: 3681227 ns, median: 557679 ns, max: 135436762 ns, min: 43893 ns, p99.9: 54
 mean: 3 ms, median: 0 ms, 
 
 max: 135 ms, min: 0 ms, p99.9: 54 ms
+~~~
+
+when we add full encryption (real world use):
+========================================
+
+rpc25519 (over QUIC; fully encrypted with TLS v1.3)
+--------
+~~~
+~/go/src/github.com/glycerine/rpcx-benchmark/rpc25519/client (master) $ ./client -n 10000000 -c 1000 -pool 1000
+2024/11/21 08:33:58 cli25519.go:159: INFO : concurrency: 1000
+requests per client: 10000
+
+2024/11/21 08:33:58 cli25519.go:179: INFO : rpc25519/greenpack message size: 567 bytes
+
+took 107043 ms for 10000000 requests
+sent     requests    : 10000000
+received requests    : 10000000
+received requests_OK : 10000000
+throughput  (TPS)    : 93420
+mean: 10656358 ns, median: 7933962 ns, max: 138034211 ns, min: 79631 ns, p99.9: 57847390 ns
+
+mean: 10 ms, median: 7 ms, 
+
+max: 138 ms, min: 0 ms, p99.9: 57 ms
+~~~
+
+rpc25519 (over TLS v1.3; so TCP now with full encryption)
+--------
+~~~
+~/go/src/github.com/glycerine/rpcx-benchmark/rpc25519/client (master) $ ./client -n 10000000 -c 1000 -pool 1000
+2024/11/21 08:38:26 cli25519.go:159: INFO : concurrency: 1000
+requests per client: 10000
+
+2024/11/21 08:38:26 cli25519.go:179: INFO : rpc25519/greenpack message size: 567 bytes
+
+took 25788 ms for 10000000 requests
+sent     requests    : 10000000
+received requests    : 10000000
+received requests_OK : 10000000
+throughput  (TPS)    : 387777
+mean: 2554761 ns, median: 1323340 ns, max: 65111049 ns, min: 63751 ns, p99.9: 27441302 ns
+
+mean: 2 ms, median: 1 ms, 
+
+max: 65 ms, min: 0 ms, p99.9: 27 ms
 ~~~
