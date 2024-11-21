@@ -45,38 +45,6 @@ var (
 	debugAddr  = flag.String("d", "127.0.0.1:9981", "server ip and port")
 )
 
-/*
-func mainOrigNetRpc() {
-	flag.Parse()
-
-	go func() {
-		log.Println(http.ListenAndServe(*debugAddr, nil))
-	}()
-
-	server := rpc.NewServer()
-	server.Register(new(Hello))
-
-	ln, err := net.Listen("tcp", *host)
-	if err != nil {
-		panic(err)
-	}
-
-	for {
-		conn, err := ln.Accept()
-		if err != nil {
-			log.Print("rpc.Serve: accept:", err.Error())
-			return
-		}
-		go serveConn(server, conn)
-	}
-}
-
-func serveConn(server *rpc.Server, conn io.ReadWriteCloser) {
-	srv := codec.NewServerCodec(conn)
-	server.ServeCodec(srv)
-}
-*/
-
 func main() {
 	flag.Parse()
 
@@ -94,8 +62,8 @@ func main() {
 	srv := rpc25519.NewServer("srv", cfg)
 	defer srv.Close()
 
-	//srv.Register2Func(customEcho)
-	srv.Register(new(Hello))
+	//srv.Register2Func(customEcho) // []byte style API.
+	srv.Register(new(Hello)) // net/rpc style API.
 
 	serverAddr, err := srv.Start()
 	if err != nil {

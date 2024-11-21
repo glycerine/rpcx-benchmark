@@ -47,7 +47,7 @@ mean: 2 ms, median: 1 ms,
 max: 72 ms, min: 0 ms, p99.9: 26 ms
 ~~~
 
-go_stdrpc
+go_stdrpc (net/rpc from standard lib, with protobuf codec)
 ---------
 ~~~
 ~/go/src/github.com/rpcxio/rpcx-benchmark/go_stdrpc/client (rpc25519) $ ./client -n 10000000 -c 1000 -pool 1000

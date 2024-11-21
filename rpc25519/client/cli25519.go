@@ -28,120 +28,6 @@ var (
 	rate        = flag.Int("r", 0, "throughputs")
 )
 
-/*
-func mainOrig() {
-	flag.Parse()
-
-	log.SetFlags(log.LstdFlags | log.Lshortfile) // Add Lshortfile for short file names
-	//log.SetLogger(log.NewDefaultLogger(os.Stdout, "", stdlog.LstdFlags|stdlog.Lshortfile, log.LvInfo))
-
-	var rl ratelimit.Limiter
-	if *rate > 0 {
-		rl = ratelimit.New(*rate)
-	}
-	// number of concurrent goroutines. Simulate client.
-	n := *concurrency
-	// number of requests each client needs to send.
-	m := *total / n
-	log.Printf("concurrency: %d\nrequests per client: %d\n\n", n, m)
-
-	name := "Hello.Say"
-
-	args := proto.PrepareArgs()
-
-	// parameter size
-	b := make([]byte, 1024)
-	i, _ := args.MarshalTo(b)
-	log.Printf("message size: %d bytes\n\n", i)
-
-	// Wait for all tests to complete.
-	var wg sync.WaitGroup
-	wg.Add(n * m)
-
-	// Total number of requests.
-	var trans uint64
-	// Return the total number of responses that were normal.
-	var transOK uint64
-
-	// Time consumption for each goroutine.
-	d := make([][]int64, n, n)
-
-	// create a client connection pool
-	var clientIndex uint64
-	poolClients := make([]*rpc.Client, 0, *pool)
-	for i := 0; i < *pool; i++ {
-		conn, err := net.Dial("tcp", *host)
-		if err != nil {
-			log.Fatal("dialing:", err)
-		}
-		c := codec.NewClientCodec(conn)
-		client := rpc.NewClientWithCodec(c)
-
-		// warmup
-		var reply proto.BenchmarkMessage
-		for j := 0; j < 5; j++ {
-			client.Call(name, args, &reply)
-		}
-		poolClients = append(poolClients, client)
-	}
-
-	// Fence: control the client to start testing at the same time.
-	var startWg sync.WaitGroup
-	startWg.Add(n + 1) // +1 is because there is a goroutine to record the start time.
-
-	// create a client goroutine and test it.
-	startTime := time.Now().UnixNano()
-	go func() {
-		startWg.Done()
-		startWg.Wait()
-		startTime = time.Now().UnixNano()
-	}()
-
-	for i := 0; i < n; i++ {
-		dt := make([]int64, 0, m)
-		d = append(d, dt)
-
-		go func(i int) {
-			var reply proto.BenchmarkMessage
-			startWg.Done()
-			startWg.Wait()
-
-			for j := 0; j < m; j++ {
-				// Current limiting, here the current waiting time is not counted into the waiting time.
-				if rl != nil {
-					rl.Take()
-				}
-
-				t := time.Now().UnixNano()
-				ci := atomic.AddUint64(&clientIndex, 1)
-				ci = ci % uint64(*pool)
-				client := poolClients[int(ci)]
-				err := client.Call(name, args, &reply)
-				t = time.Now().UnixNano() - t
-
-				d[i] = append(d[i], t)
-
-				if err == nil && reply.Field1 == "OK" {
-					atomic.AddUint64(&transOK, 1)
-				}
-				// if err != nil {
-				// 	log.Error(err)
-				// }
-
-				atomic.AddUint64(&trans, 1)
-				wg.Done()
-			}
-		}(i)
-
-	}
-
-	wg.Wait()
-
-	// statistics
-	stat.Stats(startTime, *total, d, trans, transOK)
-}
-*/
-
 func main() {
 	flag.Parse()
 
@@ -193,6 +79,7 @@ func main() {
 	cfg := rpc25519.NewConfig()
 	cfg.ClientDialToHostPort = *host
 	cfg.TCPonly_no_TLS = true
+	cfg.UseQUIC = false
 	cfg.SkipVerifyKeys = true
 
 	// create a client connection pool
@@ -212,14 +99,6 @@ func main() {
 		}
 		defer cli.Close()
 		//log.Infof("pool client %v connected from local addr='%v'\n", i, cli.LocalAddr())
-
-		/*		conn, err := net.Dial("tcp", *host)
-				if err != nil {
-					log.Fatal("dialing:", err)
-				}
-				c := codec.NewClientCodec(conn)
-				client := rpc.NewClientWithCodec(c)
-		*/
 
 		// warmup
 		var reply rpc25519.BenchmarkMessage
@@ -271,9 +150,9 @@ func main() {
 				if err == nil && reply.Field1 == "OK" {
 					atomic.AddUint64(&transOK, 1)
 				}
-				// if err != nil {
-				// 	log.Error(err)
-				// }
+				if err != nil {
+					log.Error(err)
+				}
 
 				atomic.AddUint64(&trans, 1)
 				wg.Done()
