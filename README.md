@@ -1,8 +1,22 @@
 # RPC benchmarks including [rpc25519](https://github.com/glycerine/rpc25519).
 
 All code in this repo. rpc25519 uses a BenchmarkMessage without pointers,
-which is more realistic with greenpack than the protobuf oriented pointers
-everywhere version.
+which is more realistic (when using greenpack serialization) compared 
+to protobuf version with pointers everywhere. The messages are 
+approximately the same size, with the greenpack version saving 14 bytes: 
+the serialized message size is 567 bytes for greenpack/rpc25519; 
+versus 581 bytes for protobufs/the others.
+
+Performance wise, `rpc25519` has throughput on par with the Go standard library's 
+net/rpc, and has slightly better tail latency. Both rpc25519 and
+net/rpc over perform other rpc packages.
+
+This makes some sense as rpc25519 reuses most of the net/rpc code.
+`rpc25519` enhances the standard package by changing to greenpack 
+instead of gob encoding; providing useful header information;
+allowing one-way calls as well as two-way calls; and supporting 
+server initiated messages and a simple []byte based API too.
+See https://github.com/glycerine/rpc25519 for full details.
 
 On a 48 core linux box:
 ====================
