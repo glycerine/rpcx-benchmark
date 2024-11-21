@@ -1,6 +1,6 @@
 # RPC benchmarks including [rpc25519](https://github.com/glycerine/rpc25519).
 
-All code in this repo. rpc25519 uses a BenchmarkMessage without pointers,
+rpc25519 uses a BenchmarkMessage without pointers,
 which is more realistic (when using greenpack serialization) compared 
 to protobuf version with pointers everywhere. The messages are 
 approximately the same size, with the greenpack version saving 14 bytes: 
