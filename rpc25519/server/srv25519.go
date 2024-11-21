@@ -32,7 +32,7 @@ func (t *Hello) Say(args *rpc25519.BenchmarkMessage, reply *rpc25519.BenchmarkMe
 	if *delay > 0 {
 		time.Sleep(*delay)
 	} else {
-		//runtime.Gosched()
+		runtime.Gosched()
 	}
 	//fmt.Printf("Hello.Say called!\n")
 	return nil

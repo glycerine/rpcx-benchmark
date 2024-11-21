@@ -164,13 +164,13 @@ func main() {
 	b := make([]byte, 1024)
 
 	argsProto := proto.PrepareArgs()
-	fmt.Printf("argsProto = '%#v'\n", argsProto)
+	//fmt.Printf("argsProto = '%#v'\n", argsProto)
 	i, _ := argsProto.MarshalTo(b)
 	log.Infof("proto message size: %d bytes\n\n", i)
 	_ = argsProto
 
 	args := prepareArgs()
-	fmt.Printf("args = '%#v'\n", args)
+	//fmt.Printf("args = '%#v'\n", args)
 	b2 := make([]byte, 4096)
 	b2, err := args.MarshalMsg(b2[:0])
 	if err != nil {
@@ -211,7 +211,7 @@ func main() {
 			os.Exit(1)
 		}
 		defer cli.Close()
-		log.Infof("pool client %v connected from local addr='%v'\n", i, cli.LocalAddr())
+		//log.Infof("pool client %v connected from local addr='%v'\n", i, cli.LocalAddr())
 
 		/*		conn, err := net.Dial("tcp", *host)
 				if err != nil {
