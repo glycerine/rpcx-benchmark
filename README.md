@@ -19,9 +19,8 @@ allowing one-way calls as well as two-way calls; and supporting
 server initiated messages and a simple []byte based API too.
 See https://github.com/glycerine/rpc25519 for full details.
 
-Even fully encrypted (see the last two benchmarks which use
-QUIC and TLSv1.3 respectively), the rpc25519 system is still 
-lighter and faster than any other.
+Even fully encrypted with TLSv1.3 (see the last benchmark), 
+the rpc25519 system is still lighter and faster than any other.
 
 On a 48 core linux box:
 ====================
