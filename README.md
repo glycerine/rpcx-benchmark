@@ -1,6 +1,8 @@
 # RPC benchmarks including [rpc25519](https://github.com/glycerine/rpc25519).
 
-All code in this repo.
+All code in this repo. rpc25519 uses a BenchmarkMessage without pointers,
+which is more realistic with greenpack than the protobuf oriented pointers
+everywhere version.
 
 On a 48 core linux box:
 ====================
