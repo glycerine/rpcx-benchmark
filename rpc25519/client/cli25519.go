@@ -14,7 +14,7 @@ import (
 
 	"github.com/glycerine/rpc25519"
 	//codec "github.com/mars9/codec"
-	//"github.com/rpcxio/rpcx-benchmark/proto"
+	"github.com/rpcxio/rpcx-benchmark/proto"
 	"github.com/rpcxio/rpcx-benchmark/stat"
 	"github.com/smallnest/rpcx/log"
 	"go.uber.org/ratelimit"
@@ -160,17 +160,23 @@ func main() {
 
 	name := "Hello.Say"
 
-	args := prepareArgs()
-	//args := &rpc25519.BenchmarkMessage{}
-
 	// parameter size
 	b := make([]byte, 1024)
-	//i, _ := args.MarshalTo(b)
-	b, err := args.MarshalMsg(b)
+
+	argsProto := proto.PrepareArgs()
+	fmt.Printf("argsProto = '%#v'\n", argsProto)
+	i, _ := argsProto.MarshalTo(b)
+	log.Infof("proto message size: %d bytes\n\n", i)
+	_ = argsProto
+
+	args := prepareArgs()
+	fmt.Printf("args = '%#v'\n", args)
+	b2 := make([]byte, 4096)
+	b2, err := args.MarshalMsg(b2[:0])
 	if err != nil {
 		panic("could not MarshalMsg")
 	}
-	log.Infof("message size: %d bytes\n\n", len(b))
+	log.Infof("rpc25519/greenpack message size: %d bytes\n\n", len(b2))
 
 	// Wait for all tests to complete.
 	var wg sync.WaitGroup

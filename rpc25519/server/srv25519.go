@@ -17,6 +17,8 @@ import (
 	//"github.com/rpcxio/rpcx-benchmark/proto"
 )
 
+var _ = runtime.Gosched
+
 //go:generate greenpack
 
 type Hello struct {
@@ -30,7 +32,7 @@ func (t *Hello) Say(args *rpc25519.BenchmarkMessage, reply *rpc25519.BenchmarkMe
 	if *delay > 0 {
 		time.Sleep(*delay)
 	} else {
-		runtime.Gosched()
+		//runtime.Gosched()
 	}
 	//fmt.Printf("Hello.Say called!\n")
 	return nil
@@ -79,6 +81,7 @@ func main() {
 	flag.Parse()
 
 	go func() {
+		log.Printf("pprof web listening at %v\n", *debugAddr)
 		log.Println(http.ListenAndServe(*debugAddr, nil))
 	}()
 

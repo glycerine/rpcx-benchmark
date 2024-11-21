@@ -114,6 +114,8 @@ github.com/glycerine/rpc25519 v1.1.46 h1:b713zcq0EraMoCh7RnaLwpfDw/h4wU+XrvvmQz4
 github.com/glycerine/rpc25519 v1.1.46/go.mod h1:+lOEEzaMBxs9giaUvYhG959pGatdZoEa8CbgUemVZfo=
 github.com/glycerine/rpc25519 v1.1.47 h1:hzHZVbCA14jrKZ0FFcHqk9hU//vIcpaSemyvbJX/4VM=
 github.com/glycerine/rpc25519 v1.1.47/go.mod h1:+lOEEzaMBxs9giaUvYhG959pGatdZoEa8CbgUemVZfo=
+github.com/glycerine/rpc25519 v1.1.48 h1:hMF6mmjiGwcK9FGQWpoaFsY9GMT9B4bUa9EL0x8D07U=
+github.com/glycerine/rpc25519 v1.1.48/go.mod h1:+lOEEzaMBxs9giaUvYhG959pGatdZoEa8CbgUemVZfo=
 github.com/go-errors/errors v1.0.1/go.mod h1:f4zRHt4oKfwPJE5k8C9vpYG+aDHdBFUsgrm6/TyX73Q=
 github.com/go-kit/kit v0.8.0/go.mod h1:xBxKIO96dXMWWy0MnWVtmwkA9/13aqxPnvrjFYMA2as=
 github.com/go-kit/kit v0.9.0/go.mod h1:xBxKIO96dXMWWy0MnWVtmwkA9/13aqxPnvrjFYMA2as=
