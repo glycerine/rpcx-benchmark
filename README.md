@@ -50,7 +50,7 @@ max: 72 ms, min: 0 ms, p99.9: 26 ms
 go_stdrpc (net/rpc from standard lib, with protobuf codec)
 ---------
 ~~~
-~/go/src/github.com/rpcxio/rpcx-benchmark/go_stdrpc/client (rpc25519) $ ./client -n 10000000 -c 1000 -pool 1000
+~/go/src/github.com/rpcxio/rpcx-benchmark/go_stdrpc/client (master) $ ./client -n 10000000 -c 1000 -pool 1000
 2024/11/21 01:23:56 gostd_client.go:41: INFO : concurrency: 1000
 requests per client: 10000
 
@@ -72,7 +72,7 @@ max: 77 ms, min: 0 ms, p99.9: 32 ms
 grpc
 ----
 ~~~
-~/go/src/github.com/rpcxio/rpcx-benchmark/grpc/client (rpc25519) $ ./client -n 10000000 -c 1000 -pool 1000
+~/go/src/github.com/rpcxio/rpcx-benchmark/grpc/client (master) $ ./client -n 10000000 -c 1000 -pool 1000
 2024/11/21 01:34:26 grpc_client.go:44: INFO : concurrency: 1000
 requests per client: 10000
 
@@ -118,7 +118,7 @@ max: 174 ms, min: 0 ms, p99.9: 61 ms
 
 rpcx at v1.7.8:
 ~~~
-~/go/src/github.com/rpcxio/rpcx-benchmark/rpcx/client (rpc25519) $ ./client -n 10000000 -c 1000 -pool 1000
+~/go/src/github.com/rpcxio/rpcx-benchmark/rpcx/client (master) $ ./client -n 10000000 -c 1000 -pool 1000
 2024/11/21 01:42:23 rpcx_client.go:43: INFO : concurrency: 1000
 requests per client: 10000
 
