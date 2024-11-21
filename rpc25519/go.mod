@@ -24,7 +24,7 @@ require (
 	github.com/glycerine/greenpack v0.517.0 // indirect
 	github.com/glycerine/idem v0.0.0-20240925232718-fc20a7f9bca6 // indirect
 	github.com/glycerine/ipaddr v0.2.4 // indirect
-	github.com/glycerine/rpc25519 v1.1.48 // indirect
+	github.com/glycerine/rpc25519 v1.1.50 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20230315185526-52ccab3ef572 // indirect
 	github.com/goccy/go-json v0.10.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
