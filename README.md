@@ -1,88 +1,86 @@
-# 流行的RPC框架测试
+# RPC benchmarks including [rpc25519](https://github.com/glycerine/rpc25519).
 
-先前的[rpcx-benchmark](https://github.com/rpcx-ecosystem/rpcx-benchmark)提供了一个很好的各种RPC框架性能测试结果。它采用启动一定数量的线程/纤程，每个线程独立使用一个client进行服务调用，用来获取服务调用的吞吐率和耗时。这种测试模式模拟了现实生活中很多的业务客户端并发访问RPC服务的时候，RPC服务所能提供的能力(吞吐率和延迟，这是一对相爱相杀的性能指标)。
+On a 48 core linux box:
+====================
 
-但是，测试最难的是无法实现一个“银弹”，来模拟现实中所有的场景，所以新建了这个测试工程，期望能测试更多的场景：
+rpc25519
+--------
+~~~
+~/go/src/github.com/rpcxio/rpcx-benchmark/rpc25519/client (rpc25519) $ ./client -n 10000000 -c 1000 -pool 1000
+2024/11/21 07:24:39 cli25519.go:159: INFO : concurrency: 1000
+requests per client: 10000
 
-- 能够在相同的吞吐率情况下比较耗时。 但是需要注意的一点是，有些RPC框架并不能达到很高的吞吐率，在耗时还比较合理的情况下，我们不能迁就低吞吐率的框架，所以会在测试结果中标记出来。
-- 采用共享的client。创建一定数量的client,在线程/纤程中共享。用来测试单个业务能采用对象池的方式。如果你想了解不共享的情况，请参考先前的测试项目[rpcx-benchmark](https://github.com/rpcx-ecosystem/rpcx-benchmark)。
-- 所有的框架都是在“公平”的情况下测试。测试数据都是一致的，采用protobuf进行测试。虽然有比Protobuf性能更好的序列化框架，但是因为不具有通用性所以不考虑。
-- 测试会进行预热。
-- 避免[coordinated omission](http://highscalability.com/blog/2015/10/5/your-load-generator-is-probably-lying-to-you-take-the-red-pi.html):测试统计的是`等待时间`+`服务时间`,而不是服务端服务时间
-- 统计既包含平均值，也包含中位值、最大值、最小值和 P99值。
+2024/11/21 07:24:39 cli25519.go:179: INFO : rpc25519/greenpack message size: 567 bytes
 
-每个rpc框架包含一个单独的子文件夹，里面包含一个server文件夹和client文件夹。server文件用来启动一个server，client文件夹用来测试并输出测试结果。
+2024/11/21 07:25:05 stats.go:15: INFO : took 24328 ms for 10000000 requests
+2024/11/21 07:25:07 stats.go:36: INFO : sent     requests    : 10000000
+2024/11/21 07:25:07 stats.go:37: INFO : received requests    : 10000000
+2024/11/21 07:25:07 stats.go:38: INFO : received requests_OK : 10000000
+2024/11/21 07:25:07 stats.go:42: INFO : throughput  (TPS)    : 411048
 
-你可以参考已存在的框架测试代码添加你相测试的RPC框架，客户端和服务器端必须要包含相同的序列化和反序列化逻辑，以及相同的处理逻辑，不同通过hack的方式绕过序列化反序列化违反公平性。
-
-`proto`包含测试用的`proto`文件和生成的Go代码文件，这是公用的。如果需要，你也可以生成自己的Go代码，但是需要基于同样的`proto`文件。如果你修改成`proto3`的代码，我认为也是合理的和可以接受的。
-
-**注意**
-
-- 不要使用并发数1作为最终测试结果，而是仅仅用来调试程序。 因为实际项目中很少单个客户端访问服务端的场景，如果有的话，那么你需要考虑是否有必要拆分成微服务。
-- 并发数多测试几个场景，比如并发客户端为500、1000、2000、5000、10000的场景。rpc client对象池要小于并发客户端数，用来测试客户端内部可以共享rpc client的场景。
-- 耗时太大的情况下比较吞吐率是没有意义的。没有实际业务会在服务几乎不可用的情况下还谈论吞吐率。
-- 请求错误数太多的情况下指标是没有意义的。例如所有的请求都返回错误，耗时可能很低，但这是无意义的。
+2024/11/21 07:25:07 stats.go:45: INFO : mean: 2411150 ns, median: 1284608 ns, max: 72172134 ns, min: 52199 ns, p99.9: 26249190 ns
+2024/11/21 07:25:07 stats.go:46: INFO : mean: 2 ms, median: 1 ms, max: 72 ms, min: 0 ms, p99.9: 26 ms
+~~~
 
 
-## RPC 框架
+go_stdrpc
+---------
+~~~
+~/go/src/github.com/rpcxio/rpcx-benchmark/go_stdrpc/client (rpc25519) $ ./client -n 10000000 -c 1000 -pool 1000
+2024/11/21 01:23:56 gostd_client.go:41: INFO : concurrency: 1000
+requests per client: 10000
 
-测试的RPC框架包括:
+2024/11/21 01:23:56 gostd_client.go:50: INFO : message size: 581 bytes
 
-- [rpcx](https://github.com/rpcxio/rpcx-benchmark/tree/master/rpcx)
-- [grpc/go](https://github.com/rpcxio/rpcx-benchmark/tree/master/grpc)
-- [Go标准库的rpc](https://github.com/rpcxio/rpcx-benchmark/tree/master/go_stdrpc)
-- [kitex](https://github.com/cloudwego/kitex)
-- [arpc](https://github.com/lesismal/arpc)
-- [tarsgo](): todo
-- [thrift](): todo
-- [dubbo-go](): todo
-- [hprose](): todo
-- [go-micro](): toto
+2024/11/21 01:24:20 stats.go:15: INFO : took 23901 ms for 10000000 requests
+2024/11/21 01:24:22 stats.go:36: INFO : sent     requests    : 10000000
+2024/11/21 01:24:22 stats.go:37: INFO : received requests    : 10000000
+2024/11/21 01:24:22 stats.go:38: INFO : received requests_OK : 10000000
+2024/11/21 01:24:22 stats.go:42: INFO : throughput  (TPS)    : 418392
 
-欢迎补充`todo`的代码，欢迎提交其它rpc框架的测试代码。
-
-## 测试步骤
-
-### 启动server
-
-进入每个rpc框架对应的server文件夹下，运行服务端，你可以指定监听地址
-```
-./xxx_server -s xxx.xxx.xxx.xxx:xxxx
-```
+2024/11/21 01:24:22 stats.go:45: INFO : mean: 2361007 ns, median: 725327 ns, max: 77126717 ns, min: 36479 ns, p99.9: 32380807 ns
+2024/11/21 01:24:22 stats.go:46: INFO : mean: 2 ms, median: 0 ms, max: 77 ms, min: 0 ms, p99.9: 32 ms
+~~~
 
 
-### 启动client
+grpc
+----
+~~~
+~/go/src/github.com/rpcxio/rpcx-benchmark/grpc/client (rpc25519) $ ./client -n 10000000 -c 1000 -pool 1000
+2024/11/21 01:34:26 grpc_client.go:44: INFO : concurrency: 1000
+requests per client: 10000
 
-```
-./xxx_client -s xxx.xxx.xxx.xxx:xxxx -c 100 -n 1000000
-```
+2024/11/21 01:34:26 grpc_client.go:47: INFO : Servers: 127.0.0.1:8972
 
-- `-s` 指定服务端地址
-- `-c` 指定并发数. 客户端会启动n个goroutine并发访问
-- `-n` 指定测试的总请求数
+2024/11/21 01:34:26 grpc_client.go:53: INFO : message size: 581 bytes
 
-另外你还可以指定`-pool`，指定客户端使用几个rpc的client调用。`-r`可以指定测试使用最大的吞吐率，可以用来检验在特定的吞吐率下的延迟情况。
+2024/11/21 01:35:21 stats.go:15: INFO : took 53981 ms for 10000000 requests
+2024/11/21 01:35:23 stats.go:36: INFO : sent     requests    : 10000000
+2024/11/21 01:35:23 stats.go:37: INFO : received requests    : 10000000
+2024/11/21 01:35:23 stats.go:38: INFO : received requests_OK : 10000000
+2024/11/21 01:35:23 stats.go:42: INFO : throughput  (TPS)    : 185250
 
-通过设定不同的`-c`，可以统计在不同的并发情况下框架的吞吐和延迟能力。
+2024/11/21 01:35:23 stats.go:45: INFO : mean: 5331585 ns, median: 1652778 ns, max: 137626060 ns, min: 87967 ns, p99.9: 67124546 ns
+2024/11/21 01:35:23 stats.go:46: INFO : mean: 5 ms, median: 1 ms, max: 137 ms, min: 0 ms, p99.9: 67 ms
+~~~
 
-比如:
+rpcx
+----
+~~~
+~/go/src/github.com/rpcxio/rpcx-benchmark/rpcx/client (rpc25519) $ ./client -n 10000000 -c 1000 -pool 1000
+2024/11/21 01:42:23 rpcx_client.go:43: INFO : concurrency: 1000
+requests per client: 10000
 
-```sh
-[root@localhost]#  ./rpcx_client -s 127.0.0.1:8973 -c 2000 -n 1000000
-2021/07/18 16:39:12 rpcx_client.go:39: INFO : concurrency: 2000
-requests per client: 500
+2024/11/21 01:42:23 rpcx_client.go:51: INFO : Servers: 127.0.0.1:8972
 
-2021/07/18 16:39:12 rpcx_client.go:47: INFO : Servers: 127.0.0.1:8973
+2024/11/21 01:42:23 rpcx_client.go:62: INFO : message size: 581 bytes
 
-2021/07/18 16:39:12 rpcx_client.go:58: INFO : message size: 581 bytes
+2024/11/21 01:43:01 stats.go:15: INFO : took 37275 ms for 10000000 requests
+2024/11/21 01:43:03 stats.go:36: INFO : sent     requests    : 10000000
+2024/11/21 01:43:03 stats.go:37: INFO : received requests    : 10000000
+2024/11/21 01:43:03 stats.go:38: INFO : received requests_OK : 10000000
+2024/11/21 01:43:03 stats.go:42: INFO : throughput  (TPS)    : 268276
 
-2021/07/18 16:39:17 stats.go:15: INFO : took 4677 ms for 1000000 requests
-2021/07/18 16:39:17 stats.go:36: INFO : sent     requests    : 1000000
-2021/07/18 16:39:17 stats.go:37: INFO : received requests    : 1000000
-2021/07/18 16:39:17 stats.go:38: INFO : received requests_OK : 1000000
-2021/07/18 16:39:17 stats.go:42: INFO : throughput  (TPS)    : 213812
-
-2021/07/18 16:39:17 stats.go:45: INFO : mean: 9188986 ns, median: 7920507 ns, max: 71082749 ns, min: 49247 ns, p99.9: 37877032 ns
-2021/07/18 16:39:17 stats.go:46: INFO : mean: 9 ms, median: 7 ms, max: 71 ms, min: 0 ms, p99.9: 37 ms
-```
+2024/11/21 01:43:03 stats.go:45: INFO : mean: 3681227 ns, median: 557679 ns, max: 135436762 ns, min: 43893 ns, p99.9: 54399804 ns
+2024/11/21 01:43:03 stats.go:46: INFO : mean: 3 ms, median: 0 ms, max: 135 ms, min: 0 ms, p99.9: 54 ms
+~~~
