@@ -7,6 +7,7 @@ toolchain go1.23.3
 require (
 	github.com/cloudwego/kitex v0.11.3
 	github.com/glycerine/rpcx-benchmark/proto v0.0.0-20241122032156-3dc7fdcffd23
+	github.com/glycerine/rpcx-benchmark/stat v0.0.0-20241122033248-73ffcebc3384
 	github.com/gogo/protobuf v1.3.2
 	github.com/smallnest/rpcx v1.4.1
 	go.uber.org/ratelimit v0.3.1
