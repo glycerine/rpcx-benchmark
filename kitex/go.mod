@@ -9,14 +9,14 @@ require (
 	github.com/glycerine/rpcx-benchmark/proto v0.0.0-20241122032156-3dc7fdcffd23
 	github.com/glycerine/rpcx-benchmark/stat v0.0.0-20241122033248-73ffcebc3384
 	github.com/gogo/protobuf v1.3.2
-	github.com/smallnest/rpcx v1.4.1
+	github.com/smallnest/rpcx v1.8.32
 	go.uber.org/ratelimit v0.3.1
-	golang.org/x/net v0.24.0
+	golang.org/x/net v0.27.0
 	google.golang.org/protobuf v1.35.2
 )
 
 require (
-	github.com/apache/thrift v0.13.0 // indirect
+	github.com/apache/thrift v0.20.0 // indirect
 	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/bytedance/gopkg v0.1.1 // indirect
 	github.com/bytedance/sonic v1.12.2 // indirect
@@ -33,16 +33,16 @@ require (
 	github.com/cloudwego/runtimex v0.1.0 // indirect
 	github.com/cloudwego/thriftgo v0.3.17 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
-	github.com/fatih/color v1.10.0 // indirect
+	github.com/fatih/color v1.17.0 // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/pprof v0.0.0-20240727154555-813a5fbdbec8 // indirect
 	github.com/iancoleman/strcase v0.2.0 // indirect
 	github.com/jhump/protoreflect v1.8.2 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/klauspost/cpuid/v2 v2.2.4 // indirect
-	github.com/mattn/go-colorable v0.1.8 // indirect
-	github.com/mattn/go-isatty v0.0.12 // indirect
+	github.com/klauspost/cpuid/v2 v2.2.8 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/gls v0.0.0-20220109145502-612d0167dce5 // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
@@ -55,8 +55,8 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	golang.org/x/arch v0.2.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.19.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/sys v0.22.0 // indirect
+	golang.org/x/text v0.16.0 // indirect
 	google.golang.org/genproto v0.0.0-20210513213006-bf773b8c8384 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
