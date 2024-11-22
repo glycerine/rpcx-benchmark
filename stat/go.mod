@@ -1,4 +1,4 @@
-module github.com/rpcxio/rpcx-benchmark/stat
+module github.com/glycerine/rpcx-benchmark/stat
 
 go 1.16
 

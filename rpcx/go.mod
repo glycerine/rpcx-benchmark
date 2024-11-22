@@ -1,12 +1,12 @@
-module github.com/rpcxio/rpcx-benchmark/rpcx
+module github.com/glycerine/rpcx-benchmark/rpcx
 
 go 1.21
 
 toolchain go1.23.3
 
 require (
-	github.com/rpcxio/rpcx-benchmark/proto v0.0.0-20220710151605-01c6082298c1
-	github.com/rpcxio/rpcx-benchmark/stat v0.0.0-20220710151605-01c6082298c1
+	github.com/glycerine/rpcx-benchmark/proto v0.0.0-20220710151605-01c6082298c1
+	github.com/glycerine/rpcx-benchmark/stat v0.0.0-20220710151605-01c6082298c1
 	github.com/smallnest/rpcx v1.8.32
 	go.uber.org/ratelimit v0.2.0
 )

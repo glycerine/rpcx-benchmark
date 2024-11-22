@@ -1,11 +1,11 @@
-module github.com/rpcxio/rpcx-benchmark/go_stdrpc
+module github.com/glycerine/rpcx-benchmark/go_stdrpc
 
 go 1.18
 
 require (
 	github.com/mars9/codec v0.0.0-20160208102151-49676af5c6e0
-	github.com/rpcxio/rpcx-benchmark/proto v0.0.0-20210817084709-121eb691f5bb
-	github.com/rpcxio/rpcx-benchmark/stat v0.0.0-20210817084709-121eb691f5bb
+	github.com/glycerine/rpcx-benchmark/proto v0.0.0-20210817084709-121eb691f5bb
+	github.com/glycerine/rpcx-benchmark/stat v0.0.0-20210817084709-121eb691f5bb
 	github.com/smallnest/rpcx v1.7.5-0.20220710035853-0f372c4f24ba
 	go.uber.org/ratelimit v0.2.0
 )

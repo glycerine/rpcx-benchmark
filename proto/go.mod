@@ -1,4 +1,4 @@
-module github.com/rpcxio/rpcx-benchmark/proto
+module github.com/glycerine/rpcx-benchmark/proto
 
 go 1.16
 

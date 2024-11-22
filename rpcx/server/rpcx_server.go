@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/rpcxio/rpcx-benchmark/proto"
+	"github.com/glycerine/rpcx-benchmark/proto"
 	rlog "github.com/smallnest/rpcx/log"
 	"github.com/smallnest/rpcx/server"
 )

@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/rpcxio/rpcx-benchmark/grpc/pb"
+	"github.com/glycerine/rpcx-benchmark/grpc/pb"
 	"github.com/smallnest/rpcx/log"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"

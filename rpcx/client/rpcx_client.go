@@ -10,8 +10,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/rpcxio/rpcx-benchmark/proto"
-	"github.com/rpcxio/rpcx-benchmark/stat"
+	"github.com/glycerine/rpcx-benchmark/proto"
+	"github.com/glycerine/rpcx-benchmark/stat"
 	"github.com/smallnest/rpcx/client"
 	log "github.com/smallnest/rpcx/log"
 	"github.com/smallnest/rpcx/protocol"

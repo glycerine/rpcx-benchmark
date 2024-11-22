@@ -11,8 +11,8 @@ import (
 	"time"
 
 	"github.com/gogo/protobuf/proto"
-	"github.com/rpcxio/rpcx-benchmark/grpc/pb"
-	"github.com/rpcxio/rpcx-benchmark/stat"
+	"github.com/glycerine/rpcx-benchmark/grpc/pb"
+	"github.com/glycerine/rpcx-benchmark/stat"
 	"github.com/smallnest/rpcx/log"
 	"go.uber.org/ratelimit"
 	"golang.org/x/net/context"

@@ -12,9 +12,9 @@ import (
 
 	"github.com/cloudwego/kitex/client"
 	"github.com/gogo/protobuf/proto"
-	"github.com/rpcxio/rpcx-benchmark/kitex/pb/hello"
-	pb "github.com/rpcxio/rpcx-benchmark/proto"
-	"github.com/rpcxio/rpcx-benchmark/stat"
+	"github.com/glycerine/rpcx-benchmark/kitex/pb/hello"
+	pb "github.com/glycerine/rpcx-benchmark/proto"
+	"github.com/glycerine/rpcx-benchmark/stat"
 	"github.com/smallnest/rpcx/log"
 	"go.uber.org/ratelimit"
 	"golang.org/x/net/context"

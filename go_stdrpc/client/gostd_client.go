@@ -11,8 +11,8 @@ import (
 	"time"
 
 	codec "github.com/mars9/codec"
-	"github.com/rpcxio/rpcx-benchmark/proto"
-	"github.com/rpcxio/rpcx-benchmark/stat"
+	"github.com/glycerine/rpcx-benchmark/proto"
+	"github.com/glycerine/rpcx-benchmark/stat"
 	"github.com/smallnest/rpcx/log"
 	"go.uber.org/ratelimit"
 )

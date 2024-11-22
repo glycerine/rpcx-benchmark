@@ -1,4 +1,4 @@
-module github.com/rpcxio/rpcx-benchmark/rpc25519
+module github.com/glycerine/rpcx-benchmark/rpc25519
 
 go 1.23.2
 
@@ -6,10 +6,11 @@ toolchain go1.23.3
 
 require (
 	github.com/mars9/codec v0.0.0-20160208102151-49676af5c6e0
-	github.com/rpcxio/rpcx-benchmark/proto v0.0.0-20210817084709-121eb691f5bb
-	github.com/rpcxio/rpcx-benchmark/stat v0.0.0-20210817084709-121eb691f5bb
+	github.com/glycerine/rpcx-benchmark/proto v0.1.0
+	github.com/glycerine/rpcx-benchmark/stat v0.1.0
 	github.com/smallnest/rpcx v1.7.5-0.20220710035853-0f372c4f24ba
 	go.uber.org/ratelimit v0.2.0
+	github.com/glycerine/rpc25519 v1.1.53	
 )
 
 require (
@@ -24,7 +25,6 @@ require (
 	github.com/glycerine/greenpack v0.517.0 // indirect
 	github.com/glycerine/idem v0.0.0-20240925232718-fc20a7f9bca6 // indirect
 	github.com/glycerine/ipaddr v0.2.4 // indirect
-	github.com/glycerine/rpc25519 v1.1.50 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20230315185526-52ccab3ef572 // indirect
 	github.com/goccy/go-json v0.10.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect

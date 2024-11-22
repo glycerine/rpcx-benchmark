@@ -12,7 +12,7 @@ import (
 	"time"
 
 	codec "github.com/mars9/codec"
-	"github.com/rpcxio/rpcx-benchmark/proto"
+	"github.com/glycerine/rpcx-benchmark/proto"
 )
 
 type Hello int

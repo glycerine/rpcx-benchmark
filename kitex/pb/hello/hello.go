@@ -8,7 +8,7 @@ import (
 
 	"github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"
-	pb "github.com/rpcxio/rpcx-benchmark/proto"
+	pb "github.com/glycerine/rpcx-benchmark/proto"
 	"github.com/gogo/protobuf/proto"
 )
 

@@ -10,13 +10,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/rpcxio/rpcx-benchmark/stat"
+	"github.com/glycerine/rpcx-benchmark/stat"
 	"go.uber.org/ratelimit"
 
 	"github.com/lesismal/arpc"
 	alog "github.com/lesismal/arpc/log"
-	"github.com/rpcxio/rpcx-benchmark/arpc/codec"
-	"github.com/rpcxio/rpcx-benchmark/proto"
+	"github.com/glycerine/rpcx-benchmark/arpc/codec"
+	"github.com/glycerine/rpcx-benchmark/proto"
 	"github.com/smallnest/rpcx/log"
 )
 

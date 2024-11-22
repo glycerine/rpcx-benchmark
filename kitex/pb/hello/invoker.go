@@ -4,7 +4,7 @@ package hello
 
 import (
 	"github.com/cloudwego/kitex/server"
-	"github.com/rpcxio/rpcx-benchmark/kitex/pb"
+	"github.com/glycerine/rpcx-benchmark/kitex/pb"
 )
 
 // NewInvoker creates a server.Invoker with the given handler and options.

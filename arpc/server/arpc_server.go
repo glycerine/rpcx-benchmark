@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/lesismal/arpc"
-	"github.com/rpcxio/rpcx-benchmark/arpc/codec"
-	"github.com/rpcxio/rpcx-benchmark/proto"
+	"github.com/glycerine/rpcx-benchmark/arpc/codec"
+	"github.com/glycerine/rpcx-benchmark/proto"
 )
 
 type Hello int

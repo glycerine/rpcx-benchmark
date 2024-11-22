@@ -1,10 +1,10 @@
-module github.com/rpcxio/rpcx-benchmark/grpc
+module github.com/glycerine/rpcx-benchmark/grpc
 
 go 1.18
 
 require (
 	github.com/gogo/protobuf v1.3.2
-	github.com/rpcxio/rpcx-benchmark/stat v0.0.0-20220730084343-905328fa1a4b
+	github.com/glycerine/rpcx-benchmark/stat v0.0.0-20220730084343-905328fa1a4b
 	github.com/smallnest/rpcx v1.7.8
 	go.uber.org/ratelimit v0.2.0
 	golang.org/x/net v0.0.0-20220728211354-c7608f3a8462

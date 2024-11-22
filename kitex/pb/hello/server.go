@@ -3,7 +3,7 @@ package hello
 
 import (
 	"github.com/cloudwego/kitex/server"
-	pb "github.com/rpcxio/rpcx-benchmark/proto"
+	pb "github.com/glycerine/rpcx-benchmark/proto"
 )
 
 // NewServer creates a server.Server with the given handler and options.

@@ -14,7 +14,7 @@ import (
 
 	//codec "github.com/mars9/codec"
 	"github.com/glycerine/rpc25519"
-	//"github.com/rpcxio/rpcx-benchmark/proto"
+	//"github.com/glycerine/rpcx-benchmark/proto"
 )
 
 var _ = runtime.Gosched

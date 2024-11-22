@@ -1,12 +1,12 @@
-module github.com/rpcxio/rpcx-benchmark/kitex
+module github.com/glycerine/rpcx-benchmark/kitex
 
 go 1.18
 
 require (
 	github.com/cloudwego/kitex v0.3.4
 	github.com/gogo/protobuf v1.3.2
-	github.com/rpcxio/rpcx-benchmark/proto v0.0.0-20220730153134-292b05d6ec48
-	github.com/rpcxio/rpcx-benchmark/stat v0.0.0-20220730084343-905328fa1a4b
+	github.com/glycerine/rpcx-benchmark/proto v0.0.0-20220730153134-292b05d6ec48
+	github.com/glycerine/rpcx-benchmark/stat v0.0.0-20220730084343-905328fa1a4b
 	github.com/smallnest/rpcx v1.7.8
 	go.uber.org/ratelimit v0.2.0
 	golang.org/x/net v0.0.0-20220728211354-c7608f3a8462
@@ -43,4 +43,4 @@ require (
 
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
-replace github.com/rpcxio/rpcx-benchmark/proto => ../proto
+replace github.com/glycerine/rpcx-benchmark/proto => ../proto

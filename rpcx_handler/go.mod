@@ -1,10 +1,10 @@
-module github.com/rpcxio/rpcx-benchmark/rpcx_handler
+module github.com/glycerine/rpcx-benchmark/rpcx_handler
 
 go 1.18
 
 require (
-	github.com/rpcxio/rpcx-benchmark/proto v0.0.0-20220710151605-01c6082298c1
-	github.com/rpcxio/rpcx-benchmark/stat v0.0.0-20220710151605-01c6082298c1
+	github.com/glycerine/rpcx-benchmark/proto v0.0.0-20220710151605-01c6082298c1
+	github.com/glycerine/rpcx-benchmark/stat v0.0.0-20220710151605-01c6082298c1
 	github.com/smallnest/rpcx v1.7.8
 	go.uber.org/ratelimit v0.2.0
 	github.com/gogo/protobuf v1.3.2

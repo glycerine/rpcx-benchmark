@@ -7,7 +7,7 @@ import (
 
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/client/callopt"
-	pb "github.com/rpcxio/rpcx-benchmark/proto"
+	pb "github.com/glycerine/rpcx-benchmark/proto"
 )
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
