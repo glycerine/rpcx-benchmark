@@ -26,6 +26,7 @@ var (
 	host        = flag.String("s", "127.0.0.1:8972", "server ip and port")
 	pool        = flag.Int("pool", 10, " shared grpc clients")
 	rate        = flag.Int("r", 0, "throughputs")
+	pskPath     = flag.String("psk", "", "path to pre shared key")
 )
 
 func main() {
@@ -81,6 +82,7 @@ func main() {
 	cfg.TCPonly_no_TLS = true
 	cfg.UseQUIC = false
 	cfg.SkipVerifyKeys = true
+	cfg.PreSharedKeyPath = *pskPath
 
 	// create a client connection pool
 	var clientIndex uint64

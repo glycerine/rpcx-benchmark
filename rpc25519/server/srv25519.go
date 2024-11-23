@@ -43,6 +43,7 @@ var (
 	cpuprofile = flag.String("cpuprofile", "", "write cpu profile to file")
 	delay      = flag.Duration("delay", 0, "delay to mock business processing")
 	debugAddr  = flag.String("d", "127.0.0.1:9981", "server ip and port")
+	pskPath    = flag.String("psk", "", "path to pre shared key")
 )
 
 func main() {
@@ -58,6 +59,7 @@ func main() {
 	cfg.TCPonly_no_TLS = true
 	cfg.UseQUIC = false
 	cfg.SkipVerifyKeys = true
+	cfg.PreSharedKeyPath = *pskPath
 
 	srv := rpc25519.NewServer("srv", cfg)
 	defer srv.Close()
