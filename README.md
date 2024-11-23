@@ -182,3 +182,27 @@ mean: 2 ms, median: 1 ms,
 
 max: 65 ms, min: 0 ms, p99.9: 27 ms
 ~~~
+
+rpc25519 (TCP + ASCON 128a light-weight crypto using a pre-shared key, no TLS)
+
+Hilariously, using ASCON 128a encryption over TCP actually speeds things
+up compared to TPC only (which is doing no encryption).
+~~~
+ ./client -n 10000000 -c 1000 -pool 1000 -psk binary.psk
+2024/11/23 12:47:38 cli25519.go:46: INFO : concurrency: 1000
+requests per client: 10000
+
+rpc25519/greenpack message size: 567 bytes
+
+took 22631 ms for 10000000 requests
+sent     requests    : 10000000
+received requests    : 10000000
+received requests_OK : 10000000
+throughput  (TPS)    : 441871
+
+mean: 2244078 ns, median: 1257987 ns, max: 61322020 ns, min: 59112 ns, p99.9: 24072804 ns
+
+mean: 2 ms, median: 1 ms, 
+
+max: 61 ms, min: 0 ms, p99.9: 24 ms
+~~~
