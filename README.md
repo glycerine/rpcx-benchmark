@@ -206,3 +206,27 @@ mean: 2 ms, median: 1 ms,
 
 max: 61 ms, min: 0 ms, p99.9: 24 ms
 ~~~
+
+rpc25519 with TLSv1.3 + ASCON 128a with pre-shared-key; so
+two layers of symmetric cryptography for post-quantum resistance.
+
+~~~
+$ ./client -n 10000000 -c 1000 -pool 1000 -psk ../server/certs/node.key 
+2024/11/23 13:06:08 cli25519.go:46: INFO : concurrency: 1000
+requests per client: 10000
+
+2024/11/23 13:06:08 cli25519.go:56: INFO : proto message size: 581 bytes
+
+2024/11/23 13:06:08 cli25519.go:66: INFO : rpc25519/greenpack message size: 567 bytes
+
+took 23859 ms for 10000000 requests
+sent     requests    : 10000000
+received requests    : 10000000
+received requests_OK : 10000000
+throughput  (TPS)    : 419129
+mean: 2363927 ns, median: 1313512 ns, max: 65219907 ns, min: 64302 ns, p99.9: 25258699 ns
+
+mean: 2 ms, median: 1 ms, 
+
+max: 65 ms, min: 0 ms, p99.9: 25 ms
+~~~
