@@ -230,3 +230,55 @@ mean: 2 ms, median: 1 ms,
 
 max: 65 ms, min: 0 ms, p99.9: 25 ms
 ~~~
+
+latency of connect and one call roundtrip (same host)
+===========================
+
+The above was measuring throughput at steady state.
+The measurements, as the rpcx benchmark was constructed,
+do not include the connection time or the first five
+calls (to "warmup").
+
+If, instead, we are interested in latency: the time
+to connect and make a single roundtrip, then the
+client/startup.go benchmark is useful.
+
+# Latency for TCP/TLSv1.3:
+
+~~~
+$ rpcx-benchmark/rpc25519/client (master) $ ./startup  -n 10000
+INFO : calling with new client sequentially 10000 times to measure start-up time latency.
+INFO : proto message size: 581 bytes
+INFO : rpc25519/greenpack message size: 567 bytes
+
+INFO : took 32076 ms for 10000 requests
+INFO : sent     requests    : 10000
+INFO : received requests    : 10000
+received requests_OK : 10000
+
+INFO : mean: 3191267 ns, median: 3203684 ns, 
+       max: 36925381 ns, min: 1395699 ns, p99.9: 10928644 ns
+INFO : mean: 3 ms, median: 3 ms, 
+       max: 36 ms, min: 1 ms, p99.9: 10 ms
+~~~
+
+# Latency for QUIC (UDP):
+
+~~~
+$ rpcx-benchmark/rpc25519/client (master) $ ./startup  -n 10000
+INFO : calling with new client sequentially 10000 times to measure start-up time latency.
+INFO : proto message size: 581 bytes
+
+INFO : rpc25519/greenpack message size: 567 bytes
+
+INFO : took 40481 ms for 10000 requests
+INFO : sent     requests    : 10000
+INFO : received requests    : 10000
+INFO : received requests_OK : 10000
+
+INFO : mean: 3989663 ns, median: 3039277 ns, 
+       max: 32667285 ns, min: 2075870 ns, p99.9: 23145255 ns
+INFO : mean: 3 ms, median: 3 ms, 
+       max: 32 ms, min: 2 ms, p99.9: 23 ms
+~~~
+

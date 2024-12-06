@@ -71,24 +71,28 @@ func main() {
 	cfg := rpc25519.NewConfig()
 	cfg.ClientDialToHostPort = *host
 	cfg.TCPonly_no_TLS = false
-	cfg.UseQUIC = false
+	cfg.UseQUIC = true
 	cfg.SkipVerifyKeys = false // true
 	cfg.PreSharedKeyPath = *pskPath
+	cfg.NoSharePortQUIC = true
 
 	startTime := time.Now().UnixNano()
 
 	for i := 0; i < n; i++ {
 		for j := 0; j < m; j++ {
 
+			cfg.ClientHostPort = fmt.Sprintf("127.0.0.1:%v", 30000+i)
+
+			t := time.Now().UnixNano()
 			cli, err := rpc25519.NewClient(fmt.Sprintf("cli_%v", i), cfg)
 			if err != nil {
 				log.Infof("bad client config: '%v'\n", err)
 				os.Exit(1)
 			}
-			t := time.Now().UnixNano()
+
 			err = cli.Start()
 			if err != nil {
-				log.Infof("client could not connect: '%v'\n", err)
+				log.Infof("client could not connect on i=%v: '%v'\n", i, err)
 				os.Exit(1)
 			}
 
@@ -96,7 +100,10 @@ func main() {
 
 			// run one call.
 			var reply rpc25519.BenchmarkMessage
-			cli.Call(name, args, &reply, nil)
+			err = cli.Call(name, args, &reply, nil)
+			if err == nil && reply.Field1 == "OK" {
+				//log.Infof("call %v was ok\n", i)
+			}
 
 			transOK++
 			trans++
@@ -104,6 +111,7 @@ func main() {
 			t = time.Now().UnixNano() - t
 			d[i] = append(d[i], t)
 			cli.Close()
+			//time.Sleep(time.Second)
 		}
 	}
 

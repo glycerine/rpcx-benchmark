@@ -57,7 +57,7 @@ func main() {
 	cfg := rpc25519.NewConfig()
 	cfg.ServerAddr = *host
 	cfg.TCPonly_no_TLS = false // true
-	cfg.UseQUIC = false
+	cfg.UseQUIC = true
 	cfg.SkipVerifyKeys = false // true
 	cfg.PreSharedKeyPath = *pskPath
 
