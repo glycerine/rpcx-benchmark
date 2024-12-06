@@ -79,9 +79,9 @@ func main() {
 
 	cfg := rpc25519.NewConfig()
 	cfg.ClientDialToHostPort = *host
-	cfg.TCPonly_no_TLS = true
+	cfg.TCPonly_no_TLS = false
 	cfg.UseQUIC = false
-	cfg.SkipVerifyKeys = true
+	cfg.SkipVerifyKeys = false // true
 	cfg.PreSharedKeyPath = *pskPath
 
 	// create a client connection pool
