@@ -6,7 +6,7 @@ toolchain go1.23.3
 
 require (
 	github.com/glycerine/greenpack v0.517.0
-	github.com/glycerine/rpc25519 v1.1.53
+	github.com/glycerine/rpc25519 v1.1.59
 	github.com/glycerine/rpcx-benchmark/proto v0.0.0-20241122031255-683a08c29b15
 	github.com/glycerine/rpcx-benchmark/stat v0.0.0-20241122031255-683a08c29b15
 	github.com/mars9/codec v0.0.0-20160208102151-49676af5c6e0
@@ -33,7 +33,7 @@ require (
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/montanaflynn/stats v0.6.6 // indirect
 	github.com/onsi/ginkgo/v2 v2.9.5 // indirect
-	github.com/quic-go/quic-go v0.48.2-0.20241107164717-86ebed7cf7c7 // indirect
+	github.com/quic-go/quic-go v0.48.2 // indirect
 	go.uber.org/mock v0.4.0 // indirect
 	golang.org/x/crypto v0.28.0 // indirect
 	golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842 // indirect
