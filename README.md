@@ -10,7 +10,7 @@ versus 581 bytes for protobufs/the others.
 Performance wise, `rpc25519` has throughput on par with the Go standard library's 
 net/rpc, and has slightly better tail latency. Both rpc25519 and
 net/rpc out perform the other rpc packages. rpc25519 has twice
-the mean throughput and half the tail throughput of gRPC and rpcx.
+the mean throughput and half the tail latency of gRPC and rpcx.
 
 This makes some sense as rpc25519 reuses most of the net/rpc code.
 `rpc25519` enhances the standard package by changing to greenpack 
