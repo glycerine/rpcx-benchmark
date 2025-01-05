@@ -44,6 +44,7 @@ var (
 	delay      = flag.Duration("delay", 0, "delay to mock business processing")
 	debugAddr  = flag.String("d", "127.0.0.1:9981", "server ip and port")
 	pskPath    = flag.String("psk", "", "path to pre shared key")
+	noTLS      = flag.Bool("notls", false, "turn off TLS")
 )
 
 func main() {
@@ -56,7 +57,7 @@ func main() {
 
 	cfg := rpc25519.NewConfig()
 	cfg.ServerAddr = *host
-	cfg.TCPonly_no_TLS = false // true
+	cfg.TCPonly_no_TLS = *noTLS
 	cfg.UseQUIC = false
 	cfg.SkipVerifyKeys = false // true
 	cfg.PreSharedKeyPath = *pskPath

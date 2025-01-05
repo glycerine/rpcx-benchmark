@@ -27,6 +27,7 @@ var (
 	pool        = flag.Int("pool", 10, " shared grpc clients")
 	rate        = flag.Int("r", 0, "throughputs")
 	pskPath     = flag.String("psk", "", "path to pre shared key")
+	noTLS       = flag.Bool("notls", false, "turn off TLS")
 )
 
 func main() {
@@ -79,7 +80,7 @@ func main() {
 
 	cfg := rpc25519.NewConfig()
 	cfg.ClientDialToHostPort = *host
-	cfg.TCPonly_no_TLS = false
+	cfg.TCPonly_no_TLS = *noTLS
 	cfg.UseQUIC = false
 	cfg.SkipVerifyKeys = false // true
 	cfg.PreSharedKeyPath = *pskPath

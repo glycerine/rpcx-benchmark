@@ -1,12 +1,11 @@
 module github.com/glycerine/rpcx-benchmark/rpc25519
 
-go 1.23.2
-
-toolchain go1.23.3
+go 1.23.3
 
 require (
 	github.com/glycerine/greenpack v0.517.0
 	github.com/glycerine/rpc25519 v1.1.59
+	//github.com/glycerine/rpc25519 v1.4.2
 	github.com/glycerine/rpcx-benchmark/proto v0.0.0-20241122031255-683a08c29b15
 	github.com/glycerine/rpcx-benchmark/stat v0.0.0-20241122031255-683a08c29b15
 	github.com/mars9/codec v0.0.0-20160208102151-49676af5c6e0
@@ -22,6 +21,7 @@ require (
 	github.com/cloudflare/circl v1.5.0 // indirect
 	github.com/cristalhq/base64 v0.1.2 // indirect
 	github.com/fatih/color v1.13.0 // indirect
+	github.com/glycerine/base58 v0.24.2 // indirect
 	github.com/glycerine/fwd v1.1.4-beta.jea // indirect
 	github.com/glycerine/idem v0.0.0-20240925232718-fc20a7f9bca6 // indirect
 	github.com/glycerine/ipaddr v0.2.4 // indirect
@@ -35,12 +35,12 @@ require (
 	github.com/onsi/ginkgo/v2 v2.9.5 // indirect
 	github.com/quic-go/quic-go v0.48.2 // indirect
 	go.uber.org/mock v0.4.0 // indirect
-	golang.org/x/crypto v0.28.0 // indirect
+	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842 // indirect
 	golang.org/x/mod v0.21.0 // indirect
-	golang.org/x/net v0.30.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.26.0 // indirect
-	golang.org/x/term v0.25.0 // indirect
+	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/term v0.27.0 // indirect
 	golang.org/x/tools v0.26.0 // indirect
 )
