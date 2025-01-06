@@ -5,7 +5,7 @@ go 1.23.3
 require (
 	github.com/glycerine/greenpack v0.517.0
 	github.com/glycerine/rpc25519 v1.1.59
-	//github.com/glycerine/rpc25519 v1.4.2
+	//github.com/glycerine/rpc25519 v1.5.1
 	github.com/glycerine/rpcx-benchmark/proto v0.0.0-20241122031255-683a08c29b15
 	github.com/glycerine/rpcx-benchmark/stat v0.0.0-20241122031255-683a08c29b15
 	github.com/mars9/codec v0.0.0-20160208102151-49676af5c6e0
