@@ -84,6 +84,7 @@ func main() {
 	cfg.UseQUIC = false
 	cfg.SkipVerifyKeys = false // true
 	cfg.PreSharedKeyPath = *pskPath
+	cfg.QuietTestMode = true
 
 	// create a client connection pool
 	var clientIndex uint64
