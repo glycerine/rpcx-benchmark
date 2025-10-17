@@ -157,6 +157,8 @@ github.com/glycerine/rpc25519 v1.12.3 h1:tra74n7uIWnC1QtIyAg23grDmRJzJLCAl3acJX5
 github.com/glycerine/rpc25519 v1.12.3/go.mod h1:ke/IHYhXfMf/rUtr+KfYVx8CO7aYPaxUdTush69aXcw=
 github.com/glycerine/rpc25519 v1.31.42 h1:P57/KtMTh5T7R+hot5aNgClWEKqlRG5R/n8SAmWqjM8=
 github.com/glycerine/rpc25519 v1.31.42/go.mod h1:o4UgOx+97+gOyhHS1ahgylLa9UyEsk0duujfdamdfVs=
+github.com/glycerine/rpc25519 v1.31.43 h1:18Udt40gKu7I66PIBcAPOz1s+thpIBmCQNWZs49hZLE=
+github.com/glycerine/rpc25519 v1.31.43/go.mod h1:o4UgOx+97+gOyhHS1ahgylLa9UyEsk0duujfdamdfVs=
 github.com/glycerine/rpcx-benchmark/proto v0.0.0-20241122031255-683a08c29b15 h1:5ZwxVhK0KN6m44RDxPr1sHBW9XN4VRinrNJkaHTO49I=
 github.com/glycerine/rpcx-benchmark/proto v0.0.0-20241122031255-683a08c29b15/go.mod h1:zTC+/xd43ahSpniPN3K9sQIyLNHebFAiMQzQ3yIdqgI=
 github.com/glycerine/rpcx-benchmark/stat v0.0.0-20241122031255-683a08c29b15 h1:y3VDZLkyzhOaABeqbdSgSwonoEeka7i8vKQ+1k1y2bQ=
